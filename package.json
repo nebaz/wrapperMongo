@@ -1,0 +1,8 @@
+{
+  "name": "mongo",
+  "main": "Mongo.js",
+  "version": "1.0.0",
+  "dependencies": {
+    "mongodb": "~2.2.33"
+  }
+}
