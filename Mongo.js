@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 class Mongo {
 
   async connect(config) {
+    this.config = config;
     for (let db of config.dbs) {
       if (!this[db] || !this[db].serverConfig.isConnected()) {
         this[db] = await MongoClient.connect(config.connectionString + db, config.options);
@@ -18,7 +19,7 @@ class Mongo {
   }
 
   async getNextCounterByName(name) {
-    let result = await this.getCollection(config.dbs[0], 'counters').findOneAndUpdate(
+    let result = await this.getCollection(this.config.dbs[0], 'counters').findOneAndUpdate(
       {name: name},
       {$inc: {value: 1}},
       {upsert: true}
