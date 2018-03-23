@@ -2,6 +2,10 @@
   "name": "mongo",
   "main": "Mongo.js",
   "version": "1.0.0",
+  "description": "mongodb wrapper",
+  "repository": "https://github.com/nebaz/mongo",
+  "license": "MIT",
+  "author": "Nebaz <nebaz@ya.ru>",
   "dependencies": {
     "mongodb": "~2.2.33"
   }
