@@ -15,7 +15,7 @@ class Mongo {
     if (!this[dbName] || !this[dbName].serverConfig.isConnected()) {
       throw new Error('mongo connect error');
     }
-    return this[dbName].collection(collectionName);
+    return this[dbName.toString()].collection(collectionName.toString());
   }
 
   async getNextCounterByName(name) {
