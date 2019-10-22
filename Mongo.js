@@ -4,9 +4,10 @@ class Mongo {
 
   async connect(config) {
     this.config = config;
+    let client = await MongoClient.connect(config.connectionString, config.options);
     for (let db of config.dbs) {
       if (!this[db] || !this[db].serverConfig.isConnected()) {
-        this[db] = await MongoClient.connect(config.connectionString + db, config.options);
+        this[db] = client.db(db);
       }
     }
   }
