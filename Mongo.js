@@ -13,10 +13,21 @@ class Mongo {
   }
 
   getCollection(dbName, collectionName) {
+    dbName = dbName.toString();
+    collectionName = collectionName.toString();
     if (!this[dbName] || !this[dbName].serverConfig.isConnected()) {
       throw new Error('mongo connect error');
     }
-    return this[dbName.toString()].collection(collectionName.toString());
+    return this[dbName].collection(collectionName);
+  }
+
+  async getCollectionNames(dbName) {
+    dbName = dbName.toString();
+    if (!this[dbName] || !this[dbName].serverConfig.isConnected()) {
+      throw new Error('mongo connect error');
+    }
+    let collections = await this[dbName].listCollections().toArray();
+    return collections.map(item => item.name);
   }
 
   async getNextCounterByName(name) {
