@@ -7,6 +7,6 @@
   "license": "MIT",
   "author": "Nebaz <nebaz@ya.ru>",
   "dependencies": {
-    "mongodb": "^3.3.3"
+    "mongodb": "^3.5.7"
   }
 }
