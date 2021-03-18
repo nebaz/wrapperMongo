@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 class Mongo {
 
@@ -18,7 +19,18 @@ class Mongo {
     if (!this[dbName] || !this[dbName].serverConfig.isConnected()) {
       throw new Error('mongo connect error');
     }
-    return this[dbName].collection(collectionName);
+    let collection = this[dbName].collection(collectionName);
+    collection.findById = this.findById;
+    return collection;
+  }
+
+  async findById(_id) {
+    try {
+      _id = new ObjectId(_id);
+    } catch (e) {
+      return null;
+    }
+    return this.findOne({_id});
   }
 
   async getCollectionNames(dbName) {
