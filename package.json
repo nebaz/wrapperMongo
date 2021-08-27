@@ -1,11 +1,15 @@
 {
-  "name": "mongo",
-  "main": "Mongo.js",
+  "name": "wrapper-mongo",
   "version": "1.2.0",
-  "description": "mongodb wrapper",
-  "repository": "https://github.com/nebaz/mongo",
-  "license": "MIT",
+  "main": "Mongo.js",
+  "description": "Mongo Wrapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nebaz/wrapperMongo.git"
+  },
+  "homepage": "https://github.com/nebaz/wrapperMongo",
   "author": "Nebaz <nebaz@ya.ru>",
+  "license": "MIT",
   "dependencies": {
     "mongodb": "^4.1.1"
   }
