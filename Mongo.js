@@ -26,16 +26,24 @@ class Mongo {
     }
     let collection = this[dbName].collection(collectionName);
     collection.findById = this.findById;
+    collection.updateById = this.updateById;
     return collection;
   }
 
-  async findById(_id) {
+  async findById(id) {
     try {
-      _id = new ObjectId(_id);
+      return this.findOne({_id: new ObjectId(id)});
     } catch (e) {
       return null;
     }
-    return this.findOne({_id});
+  }
+
+  async updateById(id, update, options) {
+    try {
+      return this.updateOne({_id: new ObjectId(id)}, update, options);
+    } catch (e) {
+      return null;
+    }
   }
 
   async getCollectionNames(dbName) {
